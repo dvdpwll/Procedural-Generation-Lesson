@@ -1,94 +1,57 @@
-[![Procedural Generation](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
+[![Procedural Generation](http://i.imgur.com/J4OqZye.png)]
 
-# Express as an API
+# Procedural Generation
 
-Express, like Rails, can be used as an API. In fact, building APIs in Express,
-especially those that use MongoDB for persistence, led to the rising popularity
-of Node.
+Procedural generation is when you use a computer to semi-randomly create content. In games it can be used to create environments, enemy placements, and treasure. And it can be used to create simulations of experiments where it would be too costly or dangerous to make the experiment.
 
-Express can be used for full-stack applications (those that have server-rendered
-views). However, we will use it purely as an API.
 
-A customized template for Express is available at [ga-wdi-boston/express-template](https://github.com/ga-wdi-boston/express-template).
-It includes authentication and common middlewares so that you can start
-developing an API right away.
+## Randomness
 
-## Prerequisites
+When generating content randomly you don't really want the end product to be truely random. You really want it to be psudo-random, random with just enough structure for it to make sense.
 
--   [ga-wdi-boston/node-http-server](https://github.com/ga-wdi-boston/node-http-server)
--   [ga-wdi-boston/mongoose-crud](https://github.com/ga-wdi-boston/mongoose-crud)
 
-## Objectives
+## Teleological vs. Ontogenetic
 
-By the end of this, developers should be able to:
+There are two approaches to procedural generation and they are: Teleological and Ontogenetic.
 
--   Develop an Express API, leveraging architectural conventions from Rails.
--   Write five CRUD endpoints for an API resource using Express, Mongoose, and
-    JavaScript.
--   Prevent unauthorized users from creating or changing data through the API.
+Teleological is the approach where you careate an accurate physical model of the environment and the process that govern it, then you run the simulation and observe the results.
+Ontogenetic is the approach where you observe the end result and then attemp to reproduce the result with algorithms.
+For example: To create a mountain I would create create continents and tectonic movement and see where the mountains would appear, vs creating or using an algorithm to make a mountain appear.
 
-## Preparation
+Examples of Teleological Algorithms:
 
-1.  [Fork and clone](https://github.com/ga-wdi-boston/meta/wiki/ForkAndClone)
-    this repository.
-1.  Install dependencies with `npm install`.
-1.  Verify monogdb is runnning with `brew services list`
-    (Run `brew services restart mongodb` if not)
-1.  Set a SECRET_KEY in the environment.
-1.  Run the API server with `npm start`. If you want your code to be reloaded on
-    change, you should `npm install -g nodemon` and use `nodemon` instead of
-    `npm start`.
+-   Artificial Life
+-   Dynamic Weather
+-   Fire Propagation
+-   Fluid Dynamics
+-   Genetic Algorithm
+-   Rain Drop Algorithm
+-   Reaction-Diffusion System (Chemestry)
 
-For development and testing, set the SECRET_KEY from the root of your
- repository using:
+Examples of Ontogenetic Algorithms:
 
-```sh
-echo SECRET_KEY=$(/usr/local/opt/openssl/bin/openssl rand -base64 66 | tr -d '\n') >>.env
-```
+-   Diamond-Square Algorithm: Generating heightmaps
+-   L-System: Plant generation
+-   Mazes
+-   Perlin Noise: Adds layers of noises. Higher noises are more precise, but are less weighted.
+-   Simplex Noise: A redesign of Perlin Noise, by Ken Perlin.
+-   Voronoi Diagram: organic looking division rather than rectangular or circular systems.
 
-## A Bookstore API
+Visuals:
+Diamond-Square Algorithm
 
-We've been hired to write an API for a local bookstore, 'Book Before You Leap'.
-They have plans to expand in the next few years, and they'll probably rival
-Amazon. Therefore, we've chosen Express because it's hip, and Mongo because it's
-Web Scale™.
+[![Diamond-Square Algorithm](https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Plasmafractal.gif/200px-Plasmafractal.gif)]
 
-Let's get acquainted with how we'll use Express.
+L-System
 
-## Demo: An Example Express Controller
+[![L-System](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Graftal7.png/150px-Graftal7.png)]
 
-First, let's peek at our routes, since that's the layer that decides which code
-to run for any given request. Open [`config/routes.js`](config/routes.js) and
-read through it. Look familiar?
+Perlin Noise
 
-Have a look in the [`app`](app) directory. It looks a bit like Rails, too.
+[![Perlin Noise](https://upload.wikimedia.org/wikipedia/commons/d/da/Perlin_noise.jpg)]
 
-In [`app/controllers/examples.js`](app/controllers/examples.js), we get our
-first taste of Express. What's the `(req, res, next)` signature on all our
-controller actions?
 
-The `req` object is a
-[http.IncomingMessage](https://nodejs.org/api/http.html#http_http_incomingmessage)
-object. The `res` object is
-[http.ServerResponse](https://nodejs.org/api/http.html#http_class_http_serverresponse)
-object. These are what we used in the node HTTP server. What about `next`?
 
-> More than one callback function can handle a route (make sure you specify the
-> next object).
->
-> – [Express routing](http://expressjs.com/en/guide/routing.html)
-
-That means **more than one action** can be run for a single request. In fact,
-that's how Express keeps boilerplate to a minimum; we did something similar with
-`before_filter`s in Rails. Common functionality, like error handling, can be
-extracted into a middleware and run on any request you like. However, you
-**must** use `next` to propagate errors onward.
-
-Likewise, `res.json` signals to Express that we're done working on our response.
-It's analogous to Rails' `render` method. If you don't use a **terminal
-handler**, Express will keep the connection open waiting for one. You and
-Express will both be frustrated and confused. Here's a list of terminal
-handlers. You will use `res.json` and `res.sendStatus` most frequently.
 
 | Response method      | What it means                                                                         |
 |:---------------------|:--------------------------------------------------------------------------------------|
