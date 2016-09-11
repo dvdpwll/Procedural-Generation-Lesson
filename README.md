@@ -1,4 +1,4 @@
-[![Procedural Generation](http://i.imgur.com/J4OqZye.png)]
+![Procedural Generation](http://i.imgur.com/J4OqZye.png)
 
 # Procedural Generation
 
@@ -40,15 +40,15 @@ Examples of Ontogenetic Algorithms:
 Visuals:
 Diamond-Square Algorithm
 
-[![Diamond-Square Algorithm](https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Plasmafractal.gif/200px-Plasmafractal.gif)]
+![Diamond-Square Algorithm](https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Plasmafractal.gif/200px-Plasmafractal.gif)
 
 L-System
 
-[![L-System](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Graftal7.png/150px-Graftal7.png)]
+![L-System](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Graftal7.png/150px-Graftal7.png)
 
 Perlin Noise
 
-[![Perlin Noise](https://upload.wikimedia.org/wikipedia/commons/d/da/Perlin_noise.jpg)]
+![Perlin Noise](https://upload.wikimedia.org/wikipedia/commons/d/da/Perlin_noise.jpg)
 
 
 
